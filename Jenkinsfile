@@ -20,7 +20,6 @@ pipeline {
                 echo 'Integration Testing: '
                 echo 'different aspects of code work together as expected.'
                 echo 'Postman: '
-                SIT 753Professional Practice in IT Atharv Bhandare
                 echo 'used for API testing, making it useful for integration tests involving RESTful services.'
             }
             post {
@@ -45,7 +44,6 @@ pipeline {
                 echo 'A tool for analyzing JavaScript code for style issues best practices and potential bugs.'
             }
         }
-        SIT 753Professional Practice in IT Atharv Bhandare
         // Stage 4: Security Scan
         stage('Security Scan') {
             steps {
@@ -70,7 +68,6 @@ pipeline {
         // Stage5: Deploying
         stage('Deploy to staging') {
             steps {
-                SIT 753Professional Practice in IT Atharv Bhandare
                 echo 'refers to the process of deploying an application to a production or test environment.'
                 echo 'AWS EC2 deploy: '
                 echo 'A deployment service provided by AWS that automates deploying applications to EC2 instances.'
