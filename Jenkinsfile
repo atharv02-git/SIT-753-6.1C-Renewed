@@ -1,4 +1,3 @@
-// New Jenkins Build
 pipeline {
     agent any
     // Stages wrote here
@@ -23,13 +22,14 @@ pipeline {
                 echo 'used for API testing, making it useful for integration tests involving RESTful services.'
             }
             post {
-                always{
+                always {
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
                         body: """<p>Stage 'Unit and Integration Test' completed with status ${currentBuild.result}</p>
                             <p>Check cosole output at ${env.BUILD_URL} to view the results.</P>""",
                         attachLog:true
+
                     )
                 }
             }
@@ -52,15 +52,15 @@ pipeline {
                 echo 'identifies common security flaws like SQL injection, XSS, and hardcoded secrets.'
             }
             post {
-                success {
-                    mail to: 'atharvsbhandare@gmail.com',
-                    subject: 'Test Stage Email',
-                    body: 'Build, Test, Code Analysis, Security Scan is successfull'
-                }
-                failure {
-                    mail to: 'atharvsbhandare@gmail.com',
-                    subject: 'Test Stage Email',
-                    body: 'Build, Test, Code Analysis, Security Scan is unsuccessfull'
+                always {
+                    emailext(
+                        to: 'atharvsbhandare@gmail.com',
+                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
+                        body: """<p>Stage 'Security Scan' completed with status ${currentBuild.result}</p>
+                            <p>Check cosole output at ${env.BUILD_URL} to view the results.</P>""",
+                        attachLog:true
+
+                    )
                 }
             }
         }
