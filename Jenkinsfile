@@ -20,7 +20,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext(
+                    mailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: """<p>Stage 'Unit and Integration Test' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}</p>
