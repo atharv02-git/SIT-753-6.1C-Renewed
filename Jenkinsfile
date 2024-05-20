@@ -26,7 +26,7 @@ pipeline {
                 always{
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
-                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}"
+                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
                         body: """<p>Stage 'Unit and Integration Test' completed with status ${currentBuild.result}</p>
                             <p>Check cosole output at ${env.BUILD_URL} to view the results.</P>""",
                         attachLog:true
