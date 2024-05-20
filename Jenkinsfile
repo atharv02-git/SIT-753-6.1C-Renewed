@@ -23,7 +23,7 @@ pipeline {
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p>Stage 'Unit and Integration Test' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}</p>. <p>Check console output at: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>""",
+                        body: "Stage 'Unit and Integration Test' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}. Check console output at: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.",
                         attachLog: true
                     )
                 }
@@ -49,7 +49,7 @@ pipeline {
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p>Stage 'Security Scan' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}</p>. <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>""",
+                        body: "Stage 'Security Scan' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}. Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.",
                         attachLog: true
                     )
                 }
