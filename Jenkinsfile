@@ -1,7 +1,6 @@
 pipeline {
     agent any
     stages {
-        // Stage 1: Build
         stage('Build') {
             steps {
                 echo 'Build task is a stage where code is compiled into an executable format.'
@@ -9,7 +8,6 @@ pipeline {
                 echo 'Automation tool for Java projects that manages dependencies, compiles code, runs tests.'
             }
         }
-        // Stage 2: Unit and Integration Test
         stage('Test') {
             steps {
                 echo 'Unit Testing'
@@ -25,14 +23,13 @@ pipeline {
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p>Stage 'Unit and Integration Test' completed with status ${currentBuild.currentResult}</p>
-                                 <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
+                        body: """<p>Stage 'Unit and Integration Test' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}</p>
+                                 <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>""",
                         attachLog: true
                     )
                 }
             }
         }
-        // Stage 3: Code Analysis
         stage('Code Analysis') {
             steps {
                 echo 'Code Analysis'
@@ -41,7 +38,6 @@ pipeline {
                 echo 'A tool for analyzing JavaScript code for style issues, best practices, and potential bugs.'
             }
         }
-        // Stage 4: Security Scan
         stage('Security Scan') {
             steps {
                 echo 'Security scan helps identify vulnerabilities, weaknesses, and other security risks in codebases.'
@@ -54,14 +50,13 @@ pipeline {
                     emailext(
                         to: 'atharvsbhandare@gmail.com',
                         subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p>Stage 'Security Scan' completed with status ${currentBuild.currentResult}</p>
-                                 <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
+                        body: """<p>Stage 'Security Scan' completed with status: ${currentBuild.currentResult ?: 'SUCCESS'}</p>
+                                 <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>""",
                         attachLog: true
                     )
                 }
             }
         }
-        // Stage 5: Deploy to staging
         stage('Deploy to staging') {
             steps {
                 echo 'Refers to the process of deploying an application to a production or test environment.'
@@ -69,7 +64,6 @@ pipeline {
                 echo 'A deployment service provided by AWS that automates deploying applications to EC2 instances.'
             }
         }
-        // Stage 6: Integration Tests on Staging
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Integration testing is a crucial step in the software development lifecycle.'
@@ -77,7 +71,6 @@ pipeline {
                 echo 'Selenium: For automating browser-based tests, useful for testing web applications.'
             }
         }
-        // Stage 7: Deploy to production
         stage('Deploy to production') {
             steps {
                 echo 'Deploy the application to the production server from the staging server.'
