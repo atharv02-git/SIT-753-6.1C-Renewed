@@ -23,15 +23,15 @@ pipeline {
                 echo 'used for API testing, making it useful for integration tests involving RESTful services.'
             }
             post {
-                success {
-                    mail to: 'atharvsbhandare@gmail.com',
-                    subject: 'Test Stage Email',
-                    body: 'Stage 1: Build and Stage 2: Test is successfull'
-                }
-                failure {
-                    mail to: 'atharvsbhandare@gmail.com',
-                    subject: 'Test Stage Email',
-                    body: 'Stage 1: Build and Stage 2: Test is unsuccessfull'
+                always{
+                    emailext{
+                        to: 'atharvsbhandare@gmail.com',
+                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}"
+                        body: """<p>Stage 'Unit and Integration Test' completed with status ${currentBuild.result}</p>
+                            <p>Check cosole output at ${env.BUILD_URL} to view the results.</P>""",
+                        attachLog:true
+
+                    }
                 }
             }
         }
